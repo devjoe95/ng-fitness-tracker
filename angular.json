@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -75,7 +76,8 @@
               "browserTarget": "ng-fitness-tracker:build:production"
             },
             "development": {
-              "browserTarget": "ng-fitness-tracker:build:development"
+              "browserTarget": "ng-fitness-tracker:build:development",
+              "open": true
             }
           },
           "defaultConfiguration": "development"
