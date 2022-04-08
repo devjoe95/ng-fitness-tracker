@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { MaterialModule } from './material.module';
 
 @NgModule({
@@ -13,6 +15,8 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
+    FlexLayoutModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
