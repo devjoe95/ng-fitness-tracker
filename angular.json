@@ -31,7 +31,7 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -76,8 +76,7 @@
               "browserTarget": "ng-fitness-tracker:build:production"
             },
             "development": {
-              "browserTarget": "ng-fitness-tracker:build:development",
-              "open": true
+              "browserTarget": "ng-fitness-tracker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -101,13 +100,26 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "ng-fitness-tracker"
+  "defaultProject": "ng-fitness-tracker",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <button
+    fxHide.gt-xs
+    (click)="onToggleSidenav()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button mat-button routerLink="/">Ng Fitness Tracker</button>
+  <span class="example-spacer"></span>
+  <div fxHide.xs>
+    <button mat-button routerLink="train">Training</button>
+    <ng-container *ngIf="!isAuth; else logoutBtn">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/auth/signin">
+          <mat-icon>login</mat-icon>
+          <span>Log in</span>
+        </button>
+        <button mat-menu-item routerLink="/auth/signup">
+          <mat-icon>input</mat-icon>
+          <span>Sign up</span>
+        </button>
+      </mat-menu>
+    </ng-container>
+    <ng-template #logoutBtn>
+      <button mat-flat-button color="warn" routerLink="train" (click)="onLogout()">Log out</button>
+    </ng-template>
+  </div>
+</mat-toolbar>

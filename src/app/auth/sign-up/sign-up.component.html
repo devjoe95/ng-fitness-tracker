@@ -1,25 +1,112 @@
-<section class="sign-up-form" fxLayout="column" fxLayoutAlign="center center">
+<section class="sign-up-form" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="card">
+    <img src="assets/images/dumbbell.png" width="96" alt="dumbbell" />
     <mat-card-header>
       <mat-card-title>Sign Up</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form fxLayout="column" fxLayoutAlign="center center">
+      <form
+        fxLayout="column"
+        fxLayoutAlign="space-between start"
+        #f="ngForm"
+        (ngSubmit)="onSubmit(f)"
+      >
         <mat-form-field>
-          <input type="text" matInput placeholder="Your Name" />
+          <input
+            type="text"
+            matInput
+            placeholder="Your Name"
+            ngModel
+            name="name"
+            required
+          />
         </mat-form-field>
         <mat-form-field>
-          <input type="email" matInput placeholder="Email address" />
+          <input
+            type="email"
+            matInput
+            placeholder="Email address"
+            ngModel
+            name="email"
+            email
+            required
+          /> </mat-form-field
+        ><mat-form-field appearance="fill">
+          <mat-label>Birth date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            required
+            [max]="maxDate"
+            [min]="minDate"
+            ngModel
+            name="birthDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-          <input type="password" matInput placeholder="Password" />
+          <input
+            type="password"
+            matInput
+            placeholder="Password"
+            ngModel
+            #password="ngModel"
+            name="password"
+            required
+            minlength="8"
+          />
+          <mat-error *ngIf="+password.value < 8"
+            >Must be at least 8 characters</mat-error
+          >
+          <mat-hint align="end"
+            >{{ password.value?.length < 8 ? password.value?.length : "8" }} /
+            8</mat-hint
+          >
         </mat-form-field>
         <mat-form-field>
-          <input type="password" matInput placeholder="Re-type password" />
+          <input
+            type="password"
+            matInput
+            placeholder="Re-type password"
+            ngModel
+            #confirmPassword="ngModel"
+            name="confirmPassword"
+            required
+            minlength="8"
+          />
+          <!-- <mat-error *ngIf="+password.value !== +confirmPassword.value">
+            Passwords aren't matched
+          </mat-error> -->
+          <mat-hint align="end"
+            >{{
+              confirmPassword.value?.length < 8
+                ? confirmPassword.value?.length
+                : "8"
+            }}
+            / 8</mat-hint
+          >
         </mat-form-field>
-        <mat-card-actions>
-          <button mat-stroked-button color="primary">LIKE</button>
-          <button mat-raised-button color="primary">SHARE</button>
+        <mat-checkbox
+          ngModel
+          name="agree"
+          required
+          class="example-margin"
+          color="primary"
+          >I agree to terms and conditions.</mat-checkbox
+        >
+        <mat-card-actions fxLayout="row" fxLayoutAlign="end end">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="f.invalid"
+          >
+            Sign Up
+          </button>
         </mat-card-actions>
       </form>
     </mat-card-content>

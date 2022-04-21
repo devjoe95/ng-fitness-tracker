@@ -1,0 +1,23 @@
+<section fxLayout="column" fxLayoutAlign="center center">
+  <mat-progress-spinner mode="determinate" [value]="progress">
+  </mat-progress-spinner>
+  <h2>{{ progress }}%</h2>
+  <p>{{ runningExercise?.name }}</p>
+  <div class="actions" fxLayout="row" fxLayoutGap="20px">
+    <button
+      mat-raised-button
+      (click)="onTogglePause()"
+      fxLayoutAlign="center center"
+    >
+      <ng-container *ngIf="isPaused">
+        <mat-icon>play_arrow</mat-icon><span> Resume</span>
+      </ng-container>
+      <ng-container *ngIf="!isPaused"
+        ><mat-icon>pause</mat-icon><span> Pause</span>
+      </ng-container>
+    </button>
+    <button mat-raised-button color="warn" (click)="onStop()">
+      <mat-icon>front_hand</mat-icon> Stop
+    </button>
+  </div>
+</section>

@@ -1,12 +1,13 @@
-<header>
-  <nav>
-    <button mat-button>Above</button>
-
-    <button mat-button>Below</button>
-
-    <button mat-button>Before</button>
-
-    <button mat-button>After</button>
-  </nav>
-</header>
-<router-outlet> </router-outlet>
+<mat-sidenav-container>
+  <mat-sidenav role="navigation" mode="over" #sideNav>
+    <app-sidenav-list (sidenavClose)="sideNav.close()"></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <header>
+      <app-header (sidenavToggle)="sideNav.toggle()"></app-header>
+    </header>
+    <main>
+      <router-outlet> </router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
