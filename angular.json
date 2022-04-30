@@ -120,6 +120,9 @@
   },
   "defaultProject": "ng-fitness-tracker",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@angular-eslint/schematics",
+    "cache": {
+      "enabled": false
+    }
   }
 }
