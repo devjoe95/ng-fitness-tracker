@@ -78,9 +78,9 @@
             required
             minlength="8"
           />
-          <!-- <mat-error *ngIf="+password.value !== +confirmPassword.value">
+          <mat-error *ngIf="+password.value !== +confirmPassword.value">
             Passwords aren't matched
-          </mat-error> -->
+          </mat-error>
           <mat-hint align="end"
             >{{
               confirmPassword.value?.length < 8

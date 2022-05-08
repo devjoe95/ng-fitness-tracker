@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth/auth-guard.guard';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'train',
     loadChildren: () =>
       import('./training/training.module').then((m) => m.TrainingModule),
-    // canActivate: [AuthGuard],
+    canActivate: [AngularFireAuthGuard],
   },
 ];
 
