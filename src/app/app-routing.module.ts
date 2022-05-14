@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeComponent } from './shared/components/welcome/welcome.component';
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [

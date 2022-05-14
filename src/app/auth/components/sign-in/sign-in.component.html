@@ -51,12 +51,16 @@
         </mat-checkbox>
         <mat-card-actions fxLayout="row" fxLayoutAlign="end end">
           <button
+            *ngIf="!isLoading"
             mat-raised-button
             color="primary"
             type="submit"
             [disabled]="f.invalid"
           >
             Log in
+          </button>
+          <button *ngIf="isLoading" mat-fab color="primary">
+            <mat-spinner class="load-btn" diameter="20"></mat-spinner>
           </button>
         </mat-card-actions>
       </form>

@@ -3,7 +3,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,7 +23,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
-    FlexLayoutModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -48,7 +46,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
   ],
   exports: [
-    FlexLayoutModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

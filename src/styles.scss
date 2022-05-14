@@ -7,3 +7,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.load-btn {
+  width: 30px;
+  height: 30px;
+  circle {
+    stroke: #fff !important;
+  }
+}
