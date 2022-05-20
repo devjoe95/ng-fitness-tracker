@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { UIService } from '../shared/services/ui.service';
+import { endLoading, startLoading } from '../store/actions/ui.action';
+import { State } from '../store/state';
 import { AuthData } from './auth-data.model';
 import { User } from './user.model';
 
@@ -16,7 +19,7 @@ export class AuthService {
   constructor(
     private router: Router,
     private fireAuth: AngularFireAuth,
-    private uiService: UIService
+    private store: Store<{ ui: State }>
   ) {
     this.isAuthenticated = false;
   }
@@ -36,19 +39,22 @@ export class AuthService {
     });
   }
   register(authData: AuthData): Promise<void> {
-    this.uiService.loadingStateChanged.next(true);
+    this.store.dispatch(startLoading());
     return this.fireAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then(() => {})
       .catch((err) => console.error(err))
-      .finally(() => this.uiService.loadingStateChanged.next(false));
+      .finally(() =>
+        this.store.dispatch(endLoading())
+      );
   }
   login(authData: AuthData): Promise<void> {
-    this.uiService.loadingStateChanged.next(true);
+    this.store.dispatch(startLoading());
+
     return this.fireAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(() => {})
-      .finally(() => this.uiService.loadingStateChanged.next(false));
+      .finally(() =>  this.store.dispatch(endLoading()));
   }
   logout() {
     this.fireAuth.signOut();

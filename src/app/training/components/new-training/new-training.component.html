@@ -4,7 +4,6 @@
       <mat-card-title>Time to start a workout!</mat-card-title>
       <mat-card-content>
         <h4>Select your type of training</h4>
-
         <mat-form-field appearance="fill">
           <mat-label>Favorite workout</mat-label>
           <mat-select ngModel name="exercise" required>
@@ -23,8 +22,12 @@
           mat-flat-button
           color="primary"
           [disabled]="f.invalid"
+          *ngIf="!isLoading"
         >
           Start
+        </button>
+        <button *ngIf="isLoading" mat-fab color="primary">
+          <mat-spinner class="load-btn" diameter="20"></mat-spinner>
         </button>
       </mat-card-actions>
     </mat-card>

@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class UIService {
   loadingStateChanged: Subject<boolean>;
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar ) {
     this.loadingStateChanged = new Subject<boolean>();
   }
   showSnackBar(

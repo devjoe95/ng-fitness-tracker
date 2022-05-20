@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { StopTrainingComponent } from './training/components/current-training/stop-training.component';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { uiReducer } from './store/reducers/ui.reducer';
 
 @NgModule({
   declarations: [AppComponent, StopTrainingComponent],
@@ -21,6 +23,7 @@ import { AppComponent } from './app.component';
     AuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     SharedModule,
+    StoreModule.forRoot({ ui: uiReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

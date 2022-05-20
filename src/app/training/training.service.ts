@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Exercise } from './exercise.model';
+import { endLoading, startLoading } from '../store/actions/ui.action';
+import { Store } from '@ngrx/store';
+import { State } from '../store/state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TrainingService {
   private runningExercise: Exercise | null;
-  private exercises: Exercise[];
   exerciseChanged = new Subject<Exercise | null>();
-  constructor(private db: AngularFirestore) {
+  constructor(
+    private db: AngularFirestore,
+    private store: Store<{ ui: State }>
+  ) {
     this.runningExercise = null;
-    this.exercises = [];
   }
   getAvailableExercises(): Observable<Exercise[]> {
-    return this.db
+    this.store.dispatch(startLoading());
+    const exercises$: Observable<Exercise[]> = this.db
       .collection('availableExercises')
       .snapshotChanges()
       .pipe(
@@ -31,6 +33,8 @@ export class TrainingService {
           })
         )
       );
+  this.store.dispatch(endLoading());
+    return exercises$;
   }
   startExercise(exerciseId: string) {
     this.getAvailableExercises().subscribe((exercises: Exercise[]) => {
